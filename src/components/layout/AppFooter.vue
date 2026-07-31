@@ -49,7 +49,7 @@ const contacts = {
       <div class="foot__side">
         <a
           class="foot__vk tap"
-          href="https://vk.com"
+          href="https://vk.ru/media_irnitu"
           target="_blank"
           rel="noopener noreferrer"
         >

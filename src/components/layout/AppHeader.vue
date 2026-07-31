@@ -101,7 +101,7 @@ function href(id) {
 
         <a
           class="bar__link tap"
-          href="https://vk.com"
+          href="https://vk.ru/media_irnitu"
           target="_blank"
           rel="noopener noreferrer"
         >
