@@ -1,0 +1,169 @@
+/* Токены вынесены сюда целиком: правка макета не должна превращаться
+   в поиск хардкоженных цветов по компонентам. */
+
+:root {
+  /* --- цвет ---
+     Красный один на весь проект. В макете он различался между буквицами,
+     иконками прайса и кнопкой — отсюда ощущение неаккуратности. */
+  --red: #e11d2e;
+  --red-dark: #b8121f;
+  --ink: #121212;
+  --ink-soft: #3d3d3d;
+  --muted: #6b6b6b;
+  --line: #e4e4e4;
+  --surface: #f2f2f2;
+  --paper: #ffffff;
+  --night: #0e0e0e;
+
+  /* --- шрифты ---
+     Подставьте лицензированное семейство из макета в --font-display.
+     Пока — системный геометрический стек, чтобы вёрстка не съезжала. */
+  --font-display: "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+
+  /* --- шкала размеров ---
+     Шесть шагов с фиксированным шагом. Ничего вне этого списка. */
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+  --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1.08rem + 0.35vw, 1.35rem);
+  --step-2: clamp(1.45rem, 1.3rem + 0.7vw, 1.9rem);
+  --step-3: clamp(1.85rem, 1.55rem + 1.4vw, 2.75rem);
+  --step-4: clamp(2.3rem, 1.7rem + 2.8vw, 4.25rem);
+
+  /* --- ритм --- */
+  --space-1: 0.35rem;
+  --space-2: 0.7rem;
+  --space-3: 1.15rem;
+  --space-4: 1.85rem;
+  --space-5: 3rem;
+  --space-6: 5rem;
+  --space-7: 7.5rem;
+
+  --radius: 4px;
+  --radius-lg: 10px;
+  --shell: 1240px;
+
+  /* --- затемнение фотографий ---
+     Главная правка макета: белый текст лежал прямо на листве.
+     Все секции с фото используют эти значения, а не свои. */
+  --scrim-soft: rgba(0, 0, 0, 0.35);
+  --scrim: rgba(0, 0, 0, 0.52);
+  --scrim-hard: rgba(0, 0, 0, 0.68);
+
+  --ease: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Липкая шапка перекрывала бы цель якоря */
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* Видимый фокус обязателен: без него навигация с клавиатуры невозможна.
+   Убирать outline нельзя — только заменять на свой. */
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------- утилиты */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.section {
+  padding-block: var(--space-6);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: var(--space-7);
+  }
+}
+
+/* Красная буквица — приём из макета. Здесь он один на весь проект,
+   поэтому цвет и размер везде совпадают. */
+.drop-cap::first-letter {
+  color: var(--red);
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Тап-зона минимум 44×44: пункты меню в макете были просто текстом,
+   на телефоне по ним трудно попасть. */
+.tap {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
